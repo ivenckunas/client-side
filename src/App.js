@@ -1,25 +1,41 @@
-import logo from './logo.svg';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
+import MainPage from './pages/MainPage';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+    <BrowserRouter>
+
+      <Routes>
+
+        <Route path='/' element={<MainPage />} />
+
+
+      </Routes>
+
+
+    </BrowserRouter>
   );
 }
 
 export default App;
+
+
+// 1
+// create a forum page
+// people should be able to login, register
+// whe logged in user should be able to create forum treads
+// user should be able to write message in forum treads
+// users should be able reply to particular message on forum
+// on forum tread, there should be pagination
+// there should be leaders board page, where users shown in i table, by how many messages they wrote
+// user should be able to update his photo
+// it should be possible to go to user profile
+// in user profile should be info, how many messages user wrote in forum
+// 2
+// users should be able add photo or video to forum tread
+// there should be page with online users
+// each user which is online, should have online status under his profile
+// users should be able to send messages to each other
+// on forum tread, there should be pagination
