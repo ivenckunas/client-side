@@ -1,6 +1,9 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import './reset.css';
 import './App.css';
 import MainPage from './pages/MainPage';
+import SingleDiscussion from './components/SingleDiscussion';
+import CreateTopic from './components/CreateTopic';
 
 function App() {
   return (
@@ -10,6 +13,8 @@ function App() {
       <Routes>
 
         <Route path='/' element={<MainPage />} />
+        <Route path='/topic/:id' element={<SingleDiscussion />} />
+        <Route path='/topic/create/:id' element={<CreateTopic />} />
 
 
       </Routes>

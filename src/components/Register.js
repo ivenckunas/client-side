@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { login } from '../store/generalStore';
+import { login, setErrorMsg } from '../store/generalStore';
 
 function Register() {
 
@@ -26,6 +26,7 @@ function Register() {
       .then(function (response) {
         console.log("response ===", response.data);
         if (response.data.error === true) {
+          dispatch(setErrorMsg(response.data.message))
           return;
         } else {
           dispatch(login(true))

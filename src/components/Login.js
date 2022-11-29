@@ -1,8 +1,8 @@
 import React, { useRef } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { login } from '../store/generalStore'
+import { useDispatch, useSelector } from 'react-redux';
+import { login, setErrorMsg } from '../store/generalStore'
 
 function Login() {
 
@@ -10,6 +10,7 @@ function Login() {
   const loginPswRef = useRef()
 
   const dispatch = useDispatch()
+
 
   const handleUserlogin = () => {
     const userObj = {
@@ -21,7 +22,7 @@ function Login() {
       .post("http://localhost:4000/login", userObj)
       .then(function (response) {
         if (response.data.error === true) {
-          console.log(response)
+          dispatch(setErrorMsg(response.data.message))
         } else {
           dispatch(login(true))
         }
@@ -29,6 +30,8 @@ function Login() {
       .catch(function (error) {
         console.log(error);
       });
+
+    axios.get("http://localhost:4000/auth")
   };
 
   return (

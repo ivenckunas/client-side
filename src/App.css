@@ -1,0 +1,19 @@
+.auth {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  padding-top: 5rem;
+}
+
+.errorMsg {
+  color: red;
+  word-wrap: break-word;
+}
+
+.singleTopic {
+  margin: 0.5rem 0;
+  background-color: rgb(212, 212, 212);
+  color: rgb(26, 26, 26);
+  border-radius: 8px;
+  padding: 0.5rem;
+}
