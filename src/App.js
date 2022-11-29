@@ -4,8 +4,14 @@ import './App.css';
 import MainPage from './pages/MainPage';
 import SingleDiscussion from './components/SingleDiscussion';
 import CreateTopic from './components/CreateTopic';
+import Profile from './components/Profile';
+import LeaderBoard from './components/LeaderBoard';
+import Reply from './components/Reply';
 
 function App() {
+
+
+
   return (
 
     <BrowserRouter>
@@ -13,7 +19,10 @@ function App() {
       <Routes>
 
         <Route path='/' element={<MainPage />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/leaderboard' element={<LeaderBoard />} />
         <Route path='/topic/:id' element={<SingleDiscussion />} />
+        <Route path='/topic/reply/:id' element={<Reply />} />
         <Route path='/topic/create/:id' element={<CreateTopic />} />
 
 

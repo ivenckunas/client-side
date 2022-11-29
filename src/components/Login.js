@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { login, setErrorMsg } from '../store/generalStore'
+import { login, setCurrentUser, setErrorMsg, setUserProfileImage } from '../store/generalStore'
 
 function Login() {
 
@@ -18,12 +18,15 @@ function Login() {
       password: loginPswRef.current.value,
     };
 
+    dispatch(setCurrentUser(loginEmailRef.current.value))
+
     axios
       .post("http://localhost:4000/login", userObj)
       .then(function (response) {
         if (response.data.error === true) {
           dispatch(setErrorMsg(response.data.message))
         } else {
+          dispatch(setUserProfileImage(response.data.data.image))
           dispatch(login(true))
         }
       })

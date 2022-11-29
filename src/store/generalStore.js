@@ -6,7 +6,11 @@ export const generalSlice = createSlice({
     loggedIn: false,
     errorMsg: '',
     topics: null,
-    currentTopicId: null
+    currentTopicId: null,
+    currentUser: '',
+    userProfileImage: null,
+    usersArr: null,
+    replyArr: null
   },
 
   reducers: {
@@ -21,10 +25,23 @@ export const generalSlice = createSlice({
     },
     setCurrentTopicId: (state, action) => {
       state.currentTopicId = action.payload
+    },
+    setCurrentUser: (state, action) => {
+      state.currentUser = action.payload.split('@')
+    },
+    setUserProfileImage: (state, action) => {
+      state.userProfileImage = action.payload
+    },
+    setLeaderboard: (state, action) => {
+      const usersArr = action.payload
+      state.usersArr = usersArr
+    },
+    setReplyArr: (state, action) => {
+      state.replyArr = action.payload
     }
   }
 })
 
-export const { login, setErrorMsg, setTopics, setCurrentTopicId } = generalSlice.actions
+export const { login, setErrorMsg, setTopics, setCurrentTopicId, setCurrentUser, setUserProfileImage, setLeaderboard, setReplyArr } = generalSlice.actions
 
 export default generalSlice.reducer

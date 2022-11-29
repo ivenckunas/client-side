@@ -1,31 +1,37 @@
 import axios from 'axios'
 import React, { useRef } from 'react'
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 
 function CreateTopic() {
 
-
   const { id } = useParams();
-
   const discussion = useSelector((state) => state.generalSlice.topics[id]);
-
   const currentTopicId = useSelector(state => state.generalSlice.currentTopicId._id)
-
+  const authorName = useSelector(state => state.generalSlice.currentUser[0])
+  const fullAuthorName = useSelector(state => state.generalSlice.currentUser)
   const titleRef = useRef()
   const textareaRef = useRef()
+  const nav = useNavigate()
 
   const handleCreateNewDiscussion = () => {
 
     const newDiscussion = {
       topic: currentTopicId,
       title: titleRef.current.value,
-      message: textareaRef.current.value
+      message: textareaRef.current.value,
+      author: authorName,
+      fullName: fullAuthorName.join("@")
     }
 
-    console.log('newDiscussion ===', newDiscussion);
-
-    axios.post('http://localhost:4000/new-discussion', newDiscussion).then(resp => console.log(resp))
+    axios.post('http://localhost:4000/new-discussion', newDiscussion).then(function (resp) {
+      if (resp.data.error === false) {
+        nav('/')
+      }
+    })
+      .catch(function (error) {
+        console.log(error);
+      })
   }
 
   return (

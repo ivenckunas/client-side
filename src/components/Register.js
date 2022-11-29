@@ -2,15 +2,13 @@ import React, { useRef } from 'react'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { login, setErrorMsg } from '../store/generalStore';
+import { login, setCurrentUser, setErrorMsg, setUserProfileImage } from '../store/generalStore';
 
 function Register() {
 
   const emailRef = useRef()
   const pswRef = useRef()
   const pswRepeatRef = useRef()
-
-  const nav = useNavigate()
 
   const dispatch = useDispatch()
 
@@ -29,10 +27,8 @@ function Register() {
           dispatch(setErrorMsg(response.data.message))
           return;
         } else {
-          dispatch(login(true))
-          setTimeout(() => {
-            nav("/");
-          }, 500);
+          dispatch(setUserProfileImage(response.data.data.image))
+          console.log('registered successfuly')
         }
       })
       .catch(function (error) {

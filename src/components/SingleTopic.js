@@ -1,8 +1,6 @@
-import axios from 'axios'
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { setTopics } from '../store/generalStore'
 
 function SingleTopic({ topic, index }) {
 
